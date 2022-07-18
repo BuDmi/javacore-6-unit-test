@@ -1,11 +1,12 @@
 package org.example;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class IntegerCounter {
+public class IntegerFilter {
     private List<Integer> list;
 
-    public IntegerCounter(List<Integer> list) {
+    public IntegerFilter(List<Integer> list) {
         this.list = list;
     }
 
@@ -20,5 +21,9 @@ public class IntegerCounter {
     public float countPercentOfPositiveValues() {
         float positiveValCount = (float) list.stream().filter(x -> x > 0).count();
         return (positiveValCount / (float) list.size()) * 100;
+    }
+
+    public List<Integer> getListOfPositiveValuesMoreThanUserVal(int userVal) {
+        return list.stream().filter(x -> x > 0 && x > userVal).collect(Collectors.toList());
     }
 }
